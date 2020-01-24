@@ -10,3 +10,7 @@ Fitur :
 Akun Login :
   1. username : emii / password : emii
 
+Link video :
+tutor add model : https://drive.google.com/open?id=1xMdoaZ7E87nCxS6zEEHPxg1eFuRkjpJC
+
+
