@@ -36,7 +36,7 @@
   </div><!-- /.sidebar-shortcuts -->
 
   <ul class="nav nav-list">
-    <li <?php if ($page == 'home') {
+    <li <?php if ($page == 'Home') {
           echo 'class="active"';
         } ?>>
       <a href="<?php echo base_url('Home'); ?>">
@@ -45,7 +45,7 @@
       </a>
       <b class="arrow"></b>
     </li>
-    <li <?php if ($page == 'mahasiswa') {
+    <li <?php if ($page == 'Mahasiswa') {
           echo 'class="active"';
         } ?>>
       <a href="<?php echo base_url('Mahasiswa'); ?>">
@@ -55,7 +55,7 @@
 
       <b class="arrow"></b>
     </li>
-    <li <?php if ($page == 'mahasiswa') {
+    <li <?php if ($page == 'Dosen') {
           echo 'class="active"';
         } ?>>
       <a href="<?php echo base_url('Mahasiswa'); ?>">
@@ -65,7 +65,7 @@
 
       <b class="arrow"></b>
     </li>
-    <li <?php if ($page == 'jurusan') {
+    <li <?php if ($page == 'Jurusan') {
           echo 'class="active"';
         } ?>>
       <a href="<?php echo base_url('Jurusan'); ?>">
@@ -75,10 +75,10 @@
 
       <b class="arrow"></b>
     </li>
-    <li <?php if ($page == 'mahasiswa') {
+    <li <?php if ($page == 'Prodi') {
           echo 'class="active"';
         } ?>>
-      <a href="<?php echo base_url('Mahasiswa'); ?>">
+      <a href="<?php echo base_url('Index'); ?>">
         <i class="menu-icon fa fa-university "></i>
         <span class="menu-text"> Prodi </span>
       </a>

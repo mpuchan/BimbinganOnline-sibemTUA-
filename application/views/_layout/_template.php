@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/beranda/logopnb.jpg" />
 	<title>SibemTUA|<?php echo @$judul; ?></title>
 	<!-- meta -->
 	<?php echo @$_meta; ?>

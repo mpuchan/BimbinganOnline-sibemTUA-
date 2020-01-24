@@ -24,13 +24,8 @@
           <table id="dynamic-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="center">
-                  <label class="pos-rel">
-                    <input type="checkbox" class="ace" />
-                    <span class="lbl"></span>
-                  </label>
-                </th>
 
+                <th>No</th>
                 <th>Kode_jurusan</th>
                 <th>Nama Jurusan</th>
                 <th class="hidden-480">Nama Kajur</th>

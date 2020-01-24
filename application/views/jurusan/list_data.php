@@ -1,7 +1,9 @@
 <?php
+$no = 1;
 foreach ($dataJurusan as $jurusan) {
 ?>
     <tr>
+        <td><?php echo $no; ?></td>
         <td><?php echo $jurusan->kode_jurusan; ?></td>
         <td><?php echo $jurusan->namajurusan; ?></td>
         <td><?php echo $jurusan->namakajur; ?></td>
@@ -13,5 +15,6 @@ foreach ($dataJurusan as $jurusan) {
         </td>
     </tr>
 <?php
+    $no++;
 }
 ?>
