@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Jan 2020 pada 09.31
+-- Waktu pembuatan: 24 Jan 2020 pada 15.26
 -- Versi server: 10.4.10-MariaDB
 -- Versi PHP: 7.1.33
 
@@ -54,6 +54,13 @@ CREATE TABLE `jurusan` (
   `notelp` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `jurusan`
+--
+
+INSERT INTO `jurusan` (`kode_jurusan`, `namajurusan`, `namakajur`, `notelp`) VALUES
+('15', 'TeknikElektro', 'Raka23', '098033');
+
 -- --------------------------------------------------------
 
 --
@@ -85,14 +92,29 @@ CREATE TABLE `ketuaprodi` (
 --
 
 CREATE TABLE `mahasiswa` (
+  `id` int(11) NOT NULL,
   `nim` varchar(20) NOT NULL,
   `namamahasiswa` varchar(100) NOT NULL,
   `alamat` varchar(200) NOT NULL,
   `notelp` varchar(30) NOT NULL,
   `kodeprodi` varchar(2) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `kodejurusan` varchar(3) NOT NULL,
+  `isactive` tinyint(4) NOT NULL,
+  `datacreate` date NOT NULL,
+  `dataupdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `mahasiswa`
+--
+
+INSERT INTO `mahasiswa` (`id`, `nim`, `namamahasiswa`, `alamat`, `notelp`, `kodeprodi`, `username`, `password`, `image`, `kodejurusan`, `isactive`, `datacreate`, `dataupdate`) VALUES
+(1, '2352535', 'jaelaniu', '', '', '', '', '', '', '', 0, '0000-00-00', '0000-00-00'),
+(2, '778899', '', '', '', '', '', '', '', '', 0, '0000-00-00', '0000-00-00'),
+(5, '122141', 'emii7', 'japan', '1323131', '15', 'eqwqe', 'wdd', '1231', '323', 1, '2019-02-02', '2019-02-02');
 
 -- --------------------------------------------------------
 
@@ -131,18 +153,19 @@ CREATE TABLE `proposalta` (
 CREATE TABLE `tbuser` (
   `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `nip` varchar(50) NOT NULL,
-  `nim` varchar(20) NOT NULL,
-  `roleid` int(11) NOT NULL
+  `password` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `roleid` int(11) NOT NULL,
+  `nama` varchar(60) NOT NULL,
+  `profile` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `tbuser`
 --
 
-INSERT INTO `tbuser` (`id`, `username`, `password`, `nip`, `nim`, `roleid`) VALUES
-(1, 'admin', 'admin', '', '', 1);
+INSERT INTO `tbuser` (`id`, `username`, `password`, `roleid`, `nama`, `profile`) VALUES
+(1, 'admin', 'admin', 1, 'emii', 'Koala.jpg'),
+(2, 'emii', 'emii', 1, 'emii', 'Koala.jpg');
 
 -- --------------------------------------------------------
 
@@ -163,6 +186,12 @@ CREATE TABLE `tugasakhir` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `proposalta`
@@ -187,6 +216,12 @@ ALTER TABLE `tugasakhir`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT untuk tabel `proposalta`
 --
 ALTER TABLE `proposalta`
@@ -196,7 +231,7 @@ ALTER TABLE `proposalta`
 -- AUTO_INCREMENT untuk tabel `tbuser`
 --
 ALTER TABLE `tbuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugasakhir`
