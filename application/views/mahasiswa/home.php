@@ -21,17 +21,12 @@
 
         <!-- div.dataTables_borderWrap -->
         <div>
-          <table id="dynamic-table" class="table table-bordered table-striped" cellspacing="0" width="100%">
+          <table id="list-data" class="table table-bordered table-striped" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th class="center">
-                  <label class="pos-rel">
-                    <input type="checkbox" class="ace" />
-                    <span class="lbl"></span>
-                  </label>
-                </th>
-
+                <th>No</th>
                 <th>Nim</th>
+                <th>Foto</th>
                 <th>Nama Mahasiswa</th>
                 <th class="hidden-480">Alamat</th>
 

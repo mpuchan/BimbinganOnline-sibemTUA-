@@ -15,15 +15,19 @@ class Auth extends CI_Controller
 
     if ($session == '') {
       $this->load->view('login');
-    } else {
+    } else if ($session && $this->session->userdata('level') === '1') {
       redirect('Home');
+    } else if ($session && $this->session->userdata('level') === '2') {
+      redirect('Berandamahasiswa');
+    } else if ($session && $this->session->userdata('level') === '3') {
+      redirect('Berandadosen');
     }
   }
 
-  public function Registermahasiswa()
+  public function loginmahasiswa()
   {
   }
-  public function RegisterDosen()
+  public function logindosen()
   {
   }
 
@@ -36,19 +40,35 @@ class Auth extends CI_Controller
     if ($this->form_validation->run() == TRUE) {
       $username = trim($_POST['username']);
       $password = trim($_POST['password']);
+      $level = trim($_POST['level']);
 
-      $data = $this->M_auth->login($username, $password);
+
+      $data = $this->M_auth->login($username, $password, $level);
 
       if ($data == false) {
         $this->session->set_flashdata('error_msg', 'Username / Password Anda Salah.');
         redirect('Auth');
-      } else {
+      } else if ($level == 1 && $data == true) {
+        $session = [
+          'userdata' => $data,
+          'status' => "admin"
+        ];
+        $this->session->set_userdata($session);
+        redirect('Home');
+      } else if ($level == 2 && $data == true) {
+        $session = [
+          'userdata' => $data,
+          'status' => "mahasiswa"
+        ];
+        $this->session->set_userdata($session);
+        redirect('Berandamahasiswa');
+      } else if ($level == 3 && $data == true) {
         $session = [
           'userdata' => $data,
           'status' => "Loged in"
         ];
         $this->session->set_userdata($session);
-        redirect('Home');
+        redirect('Berandamahasiswa');
       }
     } else {
       $this->session->set_flashdata('error_msg', validation_errors());

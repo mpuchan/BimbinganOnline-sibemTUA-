@@ -51,18 +51,14 @@
           <li><a href="contact.php">Kontak</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right sm">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Mahasiswa</a></li>
-              <li><a href="#">Dosen</a></li>
-            </ul>
+          <li>
+            <a href="<?php echo base_url('Auth/login'); ?>">Login</a>
           </li>
         </ul>
+        </>
       </div>
+      <!--/.row -->
+      <!--</div>-->
+      <!--/.container -->
     </div>
-    <!--/.row -->
-    <!--</div>-->
-    <!--/.container -->
-  </div>
 </header>

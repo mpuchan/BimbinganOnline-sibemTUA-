@@ -7,18 +7,21 @@ class Mahasiswa extends AUTH_Controller
     {
         parent::__construct();
         $this->load->model('M_mahasiswa');
+        $this->load->model('Mjurusan');
+        $this->load->model('M_prodi');
     }
 
     public function index()
     {
         $data['userdata']     = $this->userdata;
         $data['dataMahasiswa']     = $this->M_mahasiswa->select_all();
-
+        $data['dataJurusan'] = $this->Mjurusan->select_all();
+        $data['dataProdi'] = $this->M_prodi->select_all();
         $data['page']         = "Mahasiswa";
         $data['judul']         = "Data Mahasiswa";
         $data['deskripsi']     = "Manage Data Mahasiswa";
 
-        $data['modal_tambah_mahasiswa'] = show_my_modal('modals/modal_tambah_mahasiswa', 'tambah-mahasiswa', $data);
+        $data['modal_tambah_mahasiswa'] = show_my_modal('admin/modals/modal_tambah_mahasiswa', 'tambah-mahasiswa', $data);
 
         $this->template->views('mahasiswa/home', $data);
     }
@@ -28,7 +31,22 @@ class Mahasiswa extends AUTH_Controller
         $data['dataMahasiswa'] = $this->M_mahasiswa->select_all();
         $this->load->view('mahasiswa/list_data', $data);
     }
+    // function do_upload()
+    // {
+    //     $config['upload_path'] = "./assets/images";
+    //     $config['allowed_types'] = 'gif|jpg|png';
+    //     $config['encrypt_name'] = TRUE;
 
+    //     $this->load->library('upload', $config);
+    //     if ($this->upload->do_upload("file")) {
+    //         $data = array('upload_data' => $this->upload->data());
+
+    //         $image = $data['upload_data']['file_name'];
+
+    //         $result = $this->m_upload->simpan_upload($image);
+    //         echo json_decode($result);
+    //     }
+    // }
     public function prosesTambah()
     {
         $this->form_validation->set_rules('nim', 'Nim', 'trim|required');
@@ -69,7 +87,7 @@ class Mahasiswa extends AUTH_Controller
         $id                 = trim($_POST['id']);
         $data['dataMahasiswa']     = $this->M_mahasiswa->select_by_id($id);
 
-        echo show_my_modal('modals/modal_update_mahasiswa', 'update-mahasiswa', $data);
+        echo show_my_modal('admin/modals/modal_update_mahasiswa', 'update-mahasiswa', $data);
     }
 
     public function prosesUpdate()
