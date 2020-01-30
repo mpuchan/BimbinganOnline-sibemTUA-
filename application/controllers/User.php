@@ -8,6 +8,7 @@ class User extends AUTH_Controller
     parent::__construct();
     $this->load->model('M_user');
     $this->load->model('M_mahasiswa');
+    $this->load->model('M_dosen');
   }
 
   public function index()
@@ -15,6 +16,7 @@ class User extends AUTH_Controller
     $data['userdata']     = $this->userdata;
     $data['dataUser']     = $this->M_user->select_all();
     $data['dataMahasiswa']     = $this->M_mahasiswa->select_all();
+    $data['dataDosen']     = $this->M_dosen->select_all();
     $data['page']         = "User";
     $data['judul']         = "Data User";
     $data['deskripsi']     = "Manage Data User";

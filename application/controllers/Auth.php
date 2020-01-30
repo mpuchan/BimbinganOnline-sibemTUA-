@@ -65,10 +65,10 @@ class Auth extends CI_Controller
       } else if ($level == 3 && $data == true) {
         $session = [
           'userdata' => $data,
-          'status' => "Loged in"
+          'status' => "Dosen"
         ];
         $this->session->set_userdata($session);
-        redirect('Berandamahasiswa');
+        redirect('Berandadosen');
       }
     } else {
       $this->session->set_flashdata('error_msg', validation_errors());

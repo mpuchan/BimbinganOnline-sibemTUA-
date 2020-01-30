@@ -71,7 +71,7 @@
       <li <?php if ($page == 'Dosen') {
             echo 'class="active"';
           } ?>>
-        <a href="<?php echo base_url('Mahasiswa'); ?>">
+        <a href="<?php echo base_url('Dosen'); ?>">
           <i class="menu-icon fa fa-graduation-cap "></i>
           <span class="menu-text"> Dosen </span>
         </a>

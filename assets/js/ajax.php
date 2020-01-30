@@ -13,6 +13,9 @@
     tampilJurusan();
     tampilProdi();
     tampilUser();
+    tampilDosen();
+    tampilKetuajurusan();
+    tampilKetuaprodi();
 
     <?php
     if ($this->session->flashdata('msg') != '') {
@@ -446,6 +449,312 @@
   })
 
   $('#update-user').on('hidden.bs.modal', function() {
+    $('.form-msg').html('');
+  })
+
+  //Dosen
+  function tampilDosen() {
+    $.get('<?php echo base_url('Dosen/tampil'); ?>', function(data) {
+      MyTable.fnDestroy();
+      $('#data-dosen').html(data);
+      refresh();
+    });
+  }
+  var id_dosen;
+  $(document).on("click", ".konfirmasiHapus-dosen", function() {
+    id_dosen = $(this).attr("data-id");
+  })
+  $(document).on("click", ".hapus-dataDosen", function() {
+    var id = id_dosen;
+
+    $.ajax({
+        method: "POST",
+        url: "<?php echo base_url('Dosen/delete'); ?>",
+        data: "id=" + id
+      })
+      .done(function(data) {
+        $('#konfirmasiHapus').modal('hide');
+        tampilDosen();
+        $('.msg').html(data);
+        effect_msg();
+      })
+  })
+
+  $(document).on("click", ".update-dataDosen", function() {
+    var id = $(this).attr("data-id");
+
+    $.ajax({
+        method: "POST",
+        url: "<?php echo base_url('Dosen/update'); ?>",
+        data: "id=" + id
+      })
+      .done(function(data) {
+        $('#tempat-modal').html(data);
+        $('#update-dosen').modal('show');
+      })
+  })
+
+  $('#form-tambah-dosen').submit(function(e) {
+    var data = $(this).serialize();
+
+    $.ajax({
+        method: 'POST',
+        url: '<?php echo base_url('Dosen/prosesTambah'); ?>',
+        data: data
+      })
+      .done(function(data) {
+        var out = jQuery.parseJSON(data);
+
+        tampilDosen();
+        if (out.status == 'form') {
+          $('.form-msg').html(out.msg);
+          effect_msg_form();
+        } else {
+          document.getElementById("form-tambah-dosen").reset();
+          $('#tambah-dosen').modal('hide');
+          $('.msg').html(out.msg);
+          effect_msg();
+        }
+      })
+
+    e.preventDefault();
+  });
+
+  $(document).on('submit', '#form-update-dosen', function(e) {
+    var data = $(this).serialize();
+
+    $.ajax({
+        method: 'POST',
+        url: '<?php echo base_url('Dosen/prosesUpdate'); ?>',
+        data: data
+      })
+      .done(function(data) {
+        var out = jQuery.parseJSON(data);
+
+        tampilDosen();
+        if (out.status == 'form') {
+          $('.form-msg').html(out.msg);
+          effect_msg_form();
+        } else {
+          document.getElementById("form-update-dosen").reset();
+          $('#update-dosen').modal('hide');
+          $('.msg').html(out.msg);
+          effect_msg();
+        }
+      })
+
+    e.preventDefault();
+  });
+
+  $('#tambah-dosen').on('hidden.bs.modal', function() {
+    $('.form-msg').html('');
+  })
+
+  $('#update-dosen').on('hidden.bs.modal', function() {
+    $('.form-msg').html('');
+  })
+
+  //ketuajurusan
+  function tampilKetuajurusan() {
+    $.get('<?php echo base_url('Ketuajurusan/tampil'); ?>', function(data) {
+      MyTable.fnDestroy();
+      $('#data-ketuajurusan').html(data);
+      refresh();
+    });
+  }
+  var id_ketuajurusan;
+  $(document).on("click", ".konfirmasiHapus-ketuajurusan", function() {
+    id_ketuajurusan = $(this).attr("data-id");
+  })
+  $(document).on("click", ".hapus-dataKetuajurusan", function() {
+    var id = id_ketuajurusan;
+
+    $.ajax({
+        method: "POST",
+        url: "<?php echo base_url('Ketuajurusan/delete'); ?>",
+        data: "id=" + id
+      })
+      .done(function(data) {
+        $('#konfirmasiHapus').modal('hide');
+        tampilKetuajurusan();
+        $('.msg').html(data);
+        effect_msg();
+      })
+  })
+
+  $(document).on("click", ".update-dataKetuajurusan", function() {
+    var id = $(this).attr("data-id");
+
+    $.ajax({
+        method: "POST",
+        url: "<?php echo base_url('Ketuajurusan/update'); ?>",
+        data: "id=" + id
+      })
+      .done(function(data) {
+        $('#tempat-modal').html(data);
+        $('#update-ketuajurusan').modal('show');
+      })
+  })
+
+  $('#form-tambah-ketuajurusan').submit(function(e) {
+    var data = $(this).serialize();
+
+    $.ajax({
+        method: 'POST',
+        url: '<?php echo base_url('Ketuajurusan/prosesTambah'); ?>',
+        data: data
+      })
+      .done(function(data) {
+        var out = jQuery.parseJSON(data);
+
+        tampilKetuajurusan();
+        if (out.status == 'form') {
+          $('.form-msg').html(out.msg);
+          effect_msg_form();
+        } else {
+          document.getElementById("form-tambah-ketuajurusan").reset();
+          $('#tambah-ketuajurusan').modal('hide');
+          $('.msg').html(out.msg);
+          effect_msg();
+        }
+      })
+
+    e.preventDefault();
+  });
+
+  $(document).on('submit', '#form-update-ketuajurusan', function(e) {
+    var data = $(this).serialize();
+
+    $.ajax({
+        method: 'POST',
+        url: '<?php echo base_url('Ketuajurusan/prosesUpdate'); ?>',
+        data: data
+      })
+      .done(function(data) {
+        var out = jQuery.parseJSON(data);
+
+        tampilKetuajurusan();
+        if (out.status == 'form') {
+          $('.form-msg').html(out.msg);
+          effect_msg_form();
+        } else {
+          document.getElementById("form-update-ketuajurusan").reset();
+          $('#update-ketuajurusan').modal('hide');
+          $('.msg').html(out.msg);
+          effect_msg();
+        }
+      })
+
+    e.preventDefault();
+  });
+
+  $('#tambah-ketuajurusan').on('hidden.bs.modal', function() {
+    $('.form-msg').html('');
+  })
+
+  $('#update-ketuajurusan').on('hidden.bs.modal', function() {
+    $('.form-msg').html('');
+  })
+
+  //ketuaprodi
+  function tampilKetuaprodi() {
+    $.get('<?php echo base_url('Ketuaprodi/tampil'); ?>', function(data) {
+      MyTable.fnDestroy();
+      $('#data-ketuaprodi').html(data);
+      refresh();
+    });
+  }
+  var id_ketuajurusan;
+  $(document).on("click", ".konfirmasiHapus-ketuaprodi", function() {
+    id_ketuaprodi = $(this).attr("data-id");
+  })
+  $(document).on("click", ".hapus-dataKetuaprodi", function() {
+    var id = id_ketuaprodi;
+
+    $.ajax({
+        method: "POST",
+        url: "<?php echo base_url('Ketuaprodi/delete'); ?>",
+        data: "id=" + id
+      })
+      .done(function(data) {
+        $('#konfirmasiHapus').modal('hide');
+        tampilKetuaprodi();
+        $('.msg').html(data);
+        effect_msg();
+      })
+  })
+
+  $(document).on("click", ".update-dataKetuaprodi", function() {
+    var id = $(this).attr("data-id");
+
+    $.ajax({
+        method: "POST",
+        url: "<?php echo base_url('Ketuaprodi/update'); ?>",
+        data: "id=" + id
+      })
+      .done(function(data) {
+        $('#tempat-modal').html(data);
+        $('#update-ketuaprodi').modal('show');
+      })
+  })
+
+  $('#form-tambah-ketuaprodi').submit(function(e) {
+    var data = $(this).serialize();
+
+    $.ajax({
+        method: 'POST',
+        url: '<?php echo base_url('Ketuaprodi/prosesTambah'); ?>',
+        data: data
+      })
+      .done(function(data) {
+        var out = jQuery.parseJSON(data);
+
+        tampilKetuaprodi();
+        if (out.status == 'form') {
+          $('.form-msg').html(out.msg);
+          effect_msg_form();
+        } else {
+          document.getElementById("form-tambah-ketuaprodi").reset();
+          $('#tambah-ketuaprodi').modal('hide');
+          $('.msg').html(out.msg);
+          effect_msg();
+        }
+      })
+
+    e.preventDefault();
+  });
+
+  $(document).on('submit', '#form-update-ketuaprodi', function(e) {
+    var data = $(this).serialize();
+
+    $.ajax({
+        method: 'POST',
+        url: '<?php echo base_url('Ketuaprodi/prosesUpdate'); ?>',
+        data: data
+      })
+      .done(function(data) {
+        var out = jQuery.parseJSON(data);
+
+        tampilKetuaprodi();
+        if (out.status == 'form') {
+          $('.form-msg').html(out.msg);
+          effect_msg_form();
+        } else {
+          document.getElementById("form-update-ketuaprodi").reset();
+          $('#update-ketuaprodi').modal('hide');
+          $('.msg').html(out.msg);
+          effect_msg();
+        }
+      })
+
+    e.preventDefault();
+  });
+
+  $('#tambah-ketuaprodi').on('hidden.bs.modal', function() {
+    $('.form-msg').html('');
+  })
+
+  $('#update-ketuaprodi').on('hidden.bs.modal', function() {
     $('.form-msg').html('');
   })
 </script>

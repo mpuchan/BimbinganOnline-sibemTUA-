@@ -12,6 +12,9 @@
         <?php
         foreach ($dataMahasiswa as $mahasiswa) {
         ?>
+          <option value="<?php echo "0" ?>">
+            <?php echo "Pilih Nim" ?>
+          </option>
           <option value="<?php echo $mahasiswa->nim; ?>">
             <?php echo $mahasiswa->nim; ?>
           </option>
@@ -26,10 +29,10 @@
       </span>
       <select name="nip" class="form-control select2" aria-describedby="sizing-addon2" style="width: 100%">
         <?php
-        foreach ($dataMahasiswa as $mahasiswa) {
+        foreach ($dataDosen as $dosen) {
         ?>
-          <option value="<?php echo $mahasiswa->nim; ?>">
-            <?php echo $mahasiswa->nim; ?>
+          <option value="<?php echo $dosen->nip; ?>">
+            <?php echo $dosen->nip; ?>
           </option>
         <?php
         }
